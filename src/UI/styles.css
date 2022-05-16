@@ -1,0 +1,245 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  user-select: none;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+}
+
+.game-board {
+  margin: 7rem auto 5rem;
+  width: fit-content;
+  background: #c4c4c4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-board > * {
+  height: 15rem;
+  background: #c4c4c4;
+  margin: 1rem;
+  border-width: 1px;
+  border-style: inset;
+}
+
+.controller {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  min-width: 95%;
+}
+
+.mines-counter,
+.score {
+  flex: 0 0 6rem;
+  background: black;
+  color: red;
+  font-size: 4rem;
+  text-align: right;
+  font-family: "digital-dismay";
+  position: relative;
+}
+
+.mines-counter::before,
+.score::before {
+  content: "888";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.3;
+}
+
+.status-button {
+  height: 5rem;
+  width: 5rem;
+  background: #c4c4c4;
+  border-width: 5px;
+  border-style: outset;
+  position: relative;
+}
+.status-button:active {
+  border-style: inset;
+  background-position-y: 6px;
+}
+.status-button > svg {
+  width: 100%;
+  height: 100%;
+}
+.status-button--default-game {
+  background: url("/assets/img/smiling-face.svg") center no-repeat;
+}
+.status-button--doubtful-game {
+  background: url("/assets/img/flashed-face.svg") center no-repeat;
+}
+.status-button--lost-game {
+  background: url("/assets/img/astonished-face.svg") center no-repeat;
+}
+.status-button--won-game {
+  background: url("/assets/img/smirking-face-sunglasses.svg") center no-repeat;
+}
+
+.grid {
+  background: #c4c4c4;
+  height: fit-content;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cells-side), 50px);
+  grid-template-rows: repeat(var(--grid-cells-side), 50px);
+}
+
+.cell {
+  background: #c4c4c4;
+  border-width: 5px;
+  border-style: outset;
+  font-size: 4rem;
+  text-align: center;
+  font-family: "press-start";
+}
+.cell:active {
+  border-style: inset;
+}
+.cell--mines-0 {
+  color: transparent;
+}
+.cell--mines-1 {
+  color: #000cf9;
+}
+.cell--mines-2 {
+  color: #007b15;
+}
+.cell--mines-3 {
+  color: #ff051d;
+}
+.cell--mines-4 {
+  color: #000278;
+}
+.cell--mines-5 {
+  color: #810108;
+}
+.cell--mines-6 {
+  color: #007b7a;
+}
+.cell--mines-7 {
+  color: #000000;
+}
+.cell--mines-8 {
+  color: #7f7f7f;
+}
+.cell-- {
+  background: white;
+  border-style: none;
+  border: 2px solid #9a9a9a;
+}
+.cell__flag {
+  fill: red;
+  padding: 0.6rem;
+  background: url("/assets/img/flag.svg") center no-repeat;
+  background-size: 2.7rem;
+}
+.cell__mine {
+  border-style: none;
+  border: 2px solid #9a9a9a;
+  height: 100%;
+  width: 100%;
+  background-image: url("/assets/img/icons8-naval-mine.png");
+  background-size: cover;
+}
+.cell__mine > img {
+  height: inherit;
+  width: inherit;
+}
+.cell__mine--clicked {
+  background-color: red;
+}
+.cell__mine--wrong {
+  position: relative;
+}
+.cell__mine:active {
+  border: 2px solid #9a9a9a;
+}
+.cell__mine--wrong::before,
+.cell__mine--wrong::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6rem;
+  height: 4px;
+  background-color: red;
+  display: inline-block;
+}
+.cell__mine--wrong::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.cell__mine--wrong::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+[class*=" cell--mines"] {
+  padding-top: 0.6rem;
+  padding-left: 0.6rem;
+  border: 2px solid #9a9a9a;
+}
+[class*=" cell--mines"]:active {
+  border: 2px solid #9a9a9a;
+}
+
+.config-form {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 50%;
+  font-size: 1.5rem;
+  font-family: "press-start";
+}
+
+.config-form__label {
+  display: block;
+  margin: 1rem;
+  text-transform: uppercase;
+}
+
+select.config-form__dropbdown {
+  color: black;
+  margin: 0 1rem;
+  padding: 1rem;
+  width: 30rem;
+  font-size: 1rem;
+  background: #c4c4c4;
+  border-style: outset;
+  font-family: "press-start";
+  border-width: 5px;
+  border-color: #eee #fff #fff #eee;
+}
+
+@font-face {
+  font-family: "digital-dismay";
+  src: url("assets/fonts/digital-dismay.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "press-start";
+  src: url("assets/fonts/prstart.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
